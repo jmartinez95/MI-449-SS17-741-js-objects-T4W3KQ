@@ -20,7 +20,6 @@ var noJokesMessage = 'I... I don\'t know any jokes. 😢'
 // -------------
 // PAGE UPDATERS
 // -------------
-
 // Update the listed jokes, based on the jokes object
 var jokesMenuList = document.getElementById('jokes-menu')
 var updateJokesMenu = function () {
@@ -50,10 +49,7 @@ var updateDisplayedJoke = function () {
 var deleteJoke = function() {
   var requestedJokeDeleteKey = document.getElementById('deleteJoke').value;
   if(jokes[requestedJokeDeleteKey] != undefined) {
-    console.log("Deleted");
     delete jokes[requestedJokeDeleteKey];
-    var stringifiedjokes = JSON.stringify(jokes)
-    window.localStorage.setItem('jokes',stringifiedjokes);
     updatePage();
   }
 }
@@ -63,8 +59,6 @@ var addJoke = function() {
   var requestedJokeAddSetup = document.getElementById('setup').value;
   var requestedJokeAddPunch = document.getElementById('punch').value;
   jokes[requestedJokeAddKey] = {'setup': requestedJokeAddSetup, 'punchline': requestedJokeAddPunch};
-  var stringifiedjokes = JSON.stringify(jokes)
-  window.localStorage.setItem('jokes',stringifiedjokes);
   updatePage();
 }
 
@@ -72,9 +66,11 @@ var addJoke = function() {
 // page update functions, so that we
 // can call them all at once
 var updatePage = function () {
-  var stringifiedjokes = window.localStorage.getItem('jokes')
-  if(stringifiedjokes != null) {
-    jokes = JSON.parse(stringifiedjokes)
+  var stringifiedJokes = JSON.stringify(jokes)
+  window.localStorage.setItem('jokes',stringifiedJokes);
+  var stringifiedJokes = window.localStorage.getItem('jokes')
+  if(stringifiedJokes != null) {
+    jokes = JSON.parse(stringifiedJokes)
   }
   updateJokesMenu()
   updateDisplayedJoke()
