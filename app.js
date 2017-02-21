@@ -42,7 +42,7 @@ var updateDisplayedJoke = function () {
       "<p>" + jokes.requestedJokeKey.punchline + "</p>";
     jokeBox.innerHTML = requestedJokeText;
   } else {
-    jokeBox.innerHTML = "<p>No matching joke found.";
+    jokeBox.innerHTML = "<p>No matching joke found.</p>";
   }
 };
 
